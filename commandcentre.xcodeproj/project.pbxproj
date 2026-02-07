@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		09A79D432F37EA54008D64B2 /* GRDB in Frameworks */ = {isa = PBXBuildFile; productRef = 09A79D422F37EA54008D64B2 /* GRDB */; };
-		09A79D452F37EA54008D64B2 /* GRDB-dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 09A79D442F37EA54008D64B2 /* GRDB-dynamic */; };
+		09A79EF42F37F116008D64B2 /* Factory in Frameworks */ = {isa = PBXBuildFile; productRef = 09A79EF32F37F116008D64B2 /* Factory */; };
+		09A79EFC2F37F1D7008D64B2 /* GRDB in Frameworks */ = {isa = PBXBuildFile; productRef = 09A79EFB2F37F1D7008D64B2 /* GRDB */; };
 		09C1A8522F36948C00280983 /* GoodReactor in Frameworks */ = {isa = PBXBuildFile; productRef = 09C1A8512F36948C00280983 /* GoodReactor */; };
 		09C1A8552F3694BE00280983 /* GoodCoordinator in Frameworks */ = {isa = PBXBuildFile; productRef = 09C1A8542F3694BE00280983 /* GoodCoordinator */; };
 		09C1A8582F36956A00280983 /* GoodNetworking in Frameworks */ = {isa = PBXBuildFile; productRef = 09C1A8572F36956A00280983 /* GoodNetworking */; };
@@ -50,10 +50,10 @@
 				09C1A85F2F3695CF00280983 /* PulseUI in Frameworks */,
 				09C1A8552F3694BE00280983 /* GoodCoordinator in Frameworks */,
 				09C1A85D2F3695CF00280983 /* PulseProxy in Frameworks */,
+				09A79EFC2F37F1D7008D64B2 /* GRDB in Frameworks */,
 				09C1A8582F36956A00280983 /* GoodNetworking in Frameworks */,
 				09C1A85B2F3695CF00280983 /* Pulse in Frameworks */,
-				09A79D452F37EA54008D64B2 /* GRDB-dynamic in Frameworks */,
-				09A79D432F37EA54008D64B2 /* GRDB in Frameworks */,
+				09A79EF42F37F116008D64B2 /* Factory in Frameworks */,
 				09C1A8522F36948C00280983 /* GoodReactor in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -104,8 +104,8 @@
 				09C1A85A2F3695CF00280983 /* Pulse */,
 				09C1A85C2F3695CF00280983 /* PulseProxy */,
 				09C1A85E2F3695CF00280983 /* PulseUI */,
-				09A79D422F37EA54008D64B2 /* GRDB */,
-				09A79D442F37EA54008D64B2 /* GRDB-dynamic */,
+				09A79EF32F37F116008D64B2 /* Factory */,
+				09A79EFB2F37F1D7008D64B2 /* GRDB */,
 			);
 			productName = commandcentre;
 			productReference = 098A928E2F36858000878E93 /* commandcentre.app */;
@@ -140,7 +140,8 @@
 				09C1A8532F3694BE00280983 /* XCRemoteSwiftPackageReference "GoodCoordinator-iOS" */,
 				09C1A8562F36956A00280983 /* XCRemoteSwiftPackageReference "GoodNetworking" */,
 				09C1A8592F3695CF00280983 /* XCRemoteSwiftPackageReference "Pulse" */,
-				09A79D412F37EA54008D64B2 /* XCRemoteSwiftPackageReference "GRDB.swift" */,
+				09A79EF22F37F115008D64B2 /* XCRemoteSwiftPackageReference "Factory" */,
+				09A79EFA2F37F1D7008D64B2 /* XCRemoteSwiftPackageReference "GRDB.swift" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 098A928F2F36858000878E93 /* Products */;
@@ -404,7 +405,15 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		09A79D412F37EA54008D64B2 /* XCRemoteSwiftPackageReference "GRDB.swift" */ = {
+		09A79EF22F37F115008D64B2 /* XCRemoteSwiftPackageReference "Factory" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hmlongco/Factory.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.5.3;
+			};
+		};
+		09A79EFA2F37F1D7008D64B2 /* XCRemoteSwiftPackageReference "GRDB.swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/groue/GRDB.swift.git";
 			requirement = {
@@ -447,15 +456,15 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		09A79D422F37EA54008D64B2 /* GRDB */ = {
+		09A79EF32F37F116008D64B2 /* Factory */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 09A79D412F37EA54008D64B2 /* XCRemoteSwiftPackageReference "GRDB.swift" */;
-			productName = GRDB;
+			package = 09A79EF22F37F115008D64B2 /* XCRemoteSwiftPackageReference "Factory" */;
+			productName = Factory;
 		};
-		09A79D442F37EA54008D64B2 /* GRDB-dynamic */ = {
+		09A79EFB2F37F1D7008D64B2 /* GRDB */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 09A79D412F37EA54008D64B2 /* XCRemoteSwiftPackageReference "GRDB.swift" */;
-			productName = "GRDB-dynamic";
+			package = 09A79EFA2F37F1D7008D64B2 /* XCRemoteSwiftPackageReference "GRDB.swift" */;
+			productName = GRDB;
 		};
 		09C1A8512F36948C00280983 /* GoodReactor */ = {
 			isa = XCSwiftPackageProductDependency;
