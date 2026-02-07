@@ -6,13 +6,35 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		09C1A8522F36948C00280983 /* GoodReactor in Frameworks */ = {isa = PBXBuildFile; productRef = 09C1A8512F36948C00280983 /* GoodReactor */; };
+		09C1A8552F3694BE00280983 /* GoodCoordinator in Frameworks */ = {isa = PBXBuildFile; productRef = 09C1A8542F3694BE00280983 /* GoodCoordinator */; };
+		09C1A8582F36956A00280983 /* GoodNetworking in Frameworks */ = {isa = PBXBuildFile; productRef = 09C1A8572F36956A00280983 /* GoodNetworking */; };
+		09C1A85B2F3695CF00280983 /* Pulse in Frameworks */ = {isa = PBXBuildFile; productRef = 09C1A85A2F3695CF00280983 /* Pulse */; };
+		09C1A85D2F3695CF00280983 /* PulseProxy in Frameworks */ = {isa = PBXBuildFile; productRef = 09C1A85C2F3695CF00280983 /* PulseProxy */; };
+		09C1A85F2F3695CF00280983 /* PulseUI in Frameworks */ = {isa = PBXBuildFile; productRef = 09C1A85E2F3695CF00280983 /* PulseUI */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		098A928E2F36858000878E93 /* commandcentre.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = commandcentre.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		09C1AA2E2F369FEA00280983 /* Exceptions for "commandcentre" folder in "commandcentre" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Application/Info.plist,
+			);
+			target = 098A928D2F36858000878E93 /* commandcentre */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		098A92902F36858000878E93 /* commandcentre */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				09C1AA2E2F369FEA00280983 /* Exceptions for "commandcentre" folder in "commandcentre" target */,
+			);
 			path = commandcentre;
 			sourceTree = "<group>";
 		};
@@ -23,6 +45,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				09C1A85F2F3695CF00280983 /* PulseUI in Frameworks */,
+				09C1A8552F3694BE00280983 /* GoodCoordinator in Frameworks */,
+				09C1A85D2F3695CF00280983 /* PulseProxy in Frameworks */,
+				09C1A8582F36956A00280983 /* GoodNetworking in Frameworks */,
+				09C1A85B2F3695CF00280983 /* Pulse in Frameworks */,
+				09C1A8522F36948C00280983 /* GoodReactor in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +93,12 @@
 			);
 			name = commandcentre;
 			packageProductDependencies = (
+				09C1A8512F36948C00280983 /* GoodReactor */,
+				09C1A8542F3694BE00280983 /* GoodCoordinator */,
+				09C1A8572F36956A00280983 /* GoodNetworking */,
+				09C1A85A2F3695CF00280983 /* Pulse */,
+				09C1A85C2F3695CF00280983 /* PulseProxy */,
+				09C1A85E2F3695CF00280983 /* PulseUI */,
 			);
 			productName = commandcentre;
 			productReference = 098A928E2F36858000878E93 /* commandcentre.app */;
@@ -94,6 +128,12 @@
 			);
 			mainGroup = 098A92852F36858000878E93;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				09C1A8502F36948C00280983 /* XCRemoteSwiftPackageReference "GoodReactor" */,
+				09C1A8532F3694BE00280983 /* XCRemoteSwiftPackageReference "GoodCoordinator-iOS" */,
+				09C1A8562F36956A00280983 /* XCRemoteSwiftPackageReference "GoodNetworking" */,
+				09C1A8592F3695CF00280983 /* XCRemoteSwiftPackageReference "Pulse" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 098A928F2F36858000878E93 /* Products */;
 			projectDirPath = "";
@@ -255,7 +295,8 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = UXJD8DJ3JM;
-				GENERATE_INFOPLIST_FILE = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = commandcentre/Application/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -267,11 +308,11 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
-				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_APPROACHABLE_CONCURRENCY = NO;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = nonisolated;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -285,7 +326,8 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = UXJD8DJ3JM;
-				GENERATE_INFOPLIST_FILE = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = commandcentre/Application/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -297,11 +339,11 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
-				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_APPROACHABLE_CONCURRENCY = NO;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = nonisolated;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -328,6 +370,74 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		09C1A8502F36948C00280983 /* XCRemoteSwiftPackageReference "GoodReactor" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/GoodRequest/GoodReactor.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.4.0;
+			};
+		};
+		09C1A8532F3694BE00280983 /* XCRemoteSwiftPackageReference "GoodCoordinator-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/GoodRequest/GoodCoordinator-iOS.git";
+			requirement = {
+				branch = "fix/anchor-pop";
+				kind = branch;
+			};
+		};
+		09C1A8562F36956A00280983 /* XCRemoteSwiftPackageReference "GoodNetworking" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/GoodRequest/GoodNetworking.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.5.0;
+			};
+		};
+		09C1A8592F3695CF00280983 /* XCRemoteSwiftPackageReference "Pulse" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kean/Pulse.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.1.4;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		09C1A8512F36948C00280983 /* GoodReactor */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 09C1A8502F36948C00280983 /* XCRemoteSwiftPackageReference "GoodReactor" */;
+			productName = GoodReactor;
+		};
+		09C1A8542F3694BE00280983 /* GoodCoordinator */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 09C1A8532F3694BE00280983 /* XCRemoteSwiftPackageReference "GoodCoordinator-iOS" */;
+			productName = GoodCoordinator;
+		};
+		09C1A8572F36956A00280983 /* GoodNetworking */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 09C1A8562F36956A00280983 /* XCRemoteSwiftPackageReference "GoodNetworking" */;
+			productName = GoodNetworking;
+		};
+		09C1A85A2F3695CF00280983 /* Pulse */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 09C1A8592F3695CF00280983 /* XCRemoteSwiftPackageReference "Pulse" */;
+			productName = Pulse;
+		};
+		09C1A85C2F3695CF00280983 /* PulseProxy */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 09C1A8592F3695CF00280983 /* XCRemoteSwiftPackageReference "Pulse" */;
+			productName = PulseProxy;
+		};
+		09C1A85E2F3695CF00280983 /* PulseUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 09C1A8592F3695CF00280983 /* XCRemoteSwiftPackageReference "Pulse" */;
+			productName = PulseUI;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 098A92862F36858000878E93 /* Project object */;
 }
