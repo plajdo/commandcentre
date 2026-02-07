@@ -31,3 +31,15 @@ extension Container: @retroactive AutoRegistering {
     }
 
 }
+
+// MARK: - Services
+
+extension Container {
+
+    var databaseService: Factory<DatabaseService> {
+        Factory(self) {
+            DatabaseService()
+        }.singleton
+    }
+
+}

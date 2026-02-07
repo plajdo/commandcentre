@@ -30,6 +30,8 @@
 		<string>Rajdhani-Regular.ttf</string>
 		<string>Rajdhani-SemiBold.ttf</string>
 	</array>
+	<key>UIFileSharingEnabled</key>
+	<true/>
 	<key>UIUserInterfaceStyle</key>
 	<string>Dark</string>
 </dict>

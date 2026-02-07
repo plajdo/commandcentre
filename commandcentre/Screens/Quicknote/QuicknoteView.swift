@@ -37,6 +37,9 @@ struct QuicknoteView: View {
                 viewModel.start()
                 isTextInputFocused = true
             }
+            .onDisappear {
+                viewModel.send(action: .saveNoteOnDisappear)
+            }
     }
 
 }

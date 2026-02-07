@@ -5,6 +5,8 @@
 //  Created by Filip Šašala on 07/02/2026.
 //
 
+import Factory
+import Foundation
 import GoodCoordinator
 import GoodReactor
 import Observation
@@ -13,11 +15,16 @@ import Observation
 
     typealias Event = GoodReactor.Event<Action, Mutation, Destination>
 
+    // MARK: - Dependencies
+
+    @ObservationIgnored @Injected(\.databaseService) private var databaseService
+
     // MARK: - Action
 
     enum Action {
 
         case setNoteText(String)
+        case saveNoteOnDisappear
 
     }
 
@@ -53,6 +60,23 @@ import Observation
         switch event.kind {
         case .action(.setNoteText(let noteText)):
             state.noteText = noteText
+
+        case .action(.saveNoteOnDisappear):
+            let trimmedNoteText = state.noteText.trimmingCharacters(in: .whitespacesAndNewlines)
+
+            // Skip saving empty notes
+            guard !trimmedNoteText.isEmpty else {
+                break
+            }
+
+            run(event) {
+                do {
+                    try await databaseService.saveQuicknote(noteText: trimmedNoteText, createdAt: .now)
+                } catch {
+                    log(.error, "Quicknote save failed.", metadata(error))
+                }
+                return nil
+            }
 
         default:
             break
