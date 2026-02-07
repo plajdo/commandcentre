@@ -1,5 +1,5 @@
 //
-//  MainView.swift
+//  MainScreen.swift
 //  commandcentre
 //
 //  Created by Filip Šašala on 06/02/2026.
@@ -9,19 +9,19 @@ import GoodCoordinator
 import GoodReactor
 import SwiftUI
 
-struct MainView: View {
+struct MainScreen: View {
 
     // MARK: - View model
 
-    @ViewModel var viewModel: AnyReactor<MainViewModel.Action, MainViewModel.Destination, MainViewModel.State>
+    @ViewModel var viewModel: AnyReactor<MainScreenViewModel.Action, MainScreenViewModel.Destination, MainScreenViewModel.State>
 
     // MARK: - Initialization
 
     init() {
-        self._viewModel = ViewModel(initialValue: MainViewModel().eraseToAnyReactor())
+        self._viewModel = ViewModel(initialValue: MainScreenViewModel().eraseToAnyReactor())
     }
 
-    init(viewModel: AnyReactor<MainViewModel.Action, MainViewModel.Destination, MainViewModel.State>) {
+    init(viewModel: AnyReactor<MainScreenViewModel.Action, MainScreenViewModel.Destination, MainScreenViewModel.State>) {
         self._viewModel = ViewModel(initialValue: viewModel)
     }
 
@@ -45,7 +45,7 @@ struct MainView: View {
 
 // MARK: - Content
 
-private extension MainView {
+private extension MainScreen {
 
     var content: some View {
         VStack {
@@ -86,7 +86,7 @@ private extension MainView {
 
 // MARK: - Helpers
 
-private extension MainView {
+private extension MainScreen {
 
     var systemInfoText: String {
         let info = SystemInfo.getInfo()
@@ -99,9 +99,9 @@ private extension MainView {
 // MARK: - Previews
 
 #Preview("Default") {
-    MainView()
+    MainScreen()
 }
 
 #Preview("Success") {
-    MainView()
+    MainScreen()
 }

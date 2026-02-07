@@ -1,5 +1,5 @@
 //
-//  MainViewModel.swift
+//  MainScreenViewModel.swift
 //  commandcentre
 //
 //  Created by Filip Šašala on 06/02/2026.
@@ -9,7 +9,7 @@ import GoodCoordinator
 import GoodReactor
 import Observation
 
-@Observable final class MainViewModel: Reactor {
+@Observable final class MainScreenViewModel: Reactor {
 
     typealias Event = GoodReactor.Event<Action, Mutation, Destination>
 

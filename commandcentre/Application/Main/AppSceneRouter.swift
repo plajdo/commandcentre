@@ -22,7 +22,7 @@ import SwiftUI
             switch viewModel.destination {
             case .main:
                 NavigationStack {
-                    MainView()
+                    MainScreen()
                 }
                 .transition(.opacity)
 
