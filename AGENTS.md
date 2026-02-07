@@ -33,6 +33,7 @@ Coding Style & Naming
 - SwiftUI-first; ALWAYS use Reactor architecture.
 - Organize code into existing MARKs.
 - Keep file headers in sync with filename.
+- Add empty lines above and below the content of any `class`, `enum`, `struct`, or `protocol` body. For empty types, either use a one-liner (`enum EmptyEnum { }`) or keep the body empty with surrounding blank lines.
 
 -------------
 Swift

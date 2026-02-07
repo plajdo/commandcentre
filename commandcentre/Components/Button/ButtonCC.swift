@@ -61,7 +61,7 @@ private extension ButtonCC {
 
             Spacer(minLength: 0)
         }
-        .font(Fonts.buttonTitle)
+        .font(Fonts.largeTitle)
         .foregroundStyle(Color.Cc.cyan)
         .padding(.horizontal, 8)
         .padding(.vertical, 8)

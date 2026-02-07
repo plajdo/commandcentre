@@ -28,13 +28,4 @@ enum Fonts {
     static let caption = customFont(size: 12, relativeTo: .caption)
     static let caption2 = customFont(size: 11, relativeTo: .caption2)
 
-    @available(*, deprecated, message: "Remove, use standard font sizes above")
-    static let buttonIcon = customFont(size: 22, relativeTo: .title2)
-
-    @available(*, deprecated, message: "Remove, use standard font sizes above")
-    static let buttonTitle = customFont(size: 34, relativeTo: .largeTitle)
-
-    @available(*, deprecated, message: "Remove, use standard font sizes above")
-    static let debugMenuButton = customFont(size: 22, relativeTo: .title2)
-
 }
