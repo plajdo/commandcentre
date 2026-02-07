@@ -15,6 +15,6 @@ struct WidgetCC<Content: View>: View {
     }
 
     var body: some View {
-        VStack(content: content)
+        VStack(spacing: 24, content: content)
     }
 }

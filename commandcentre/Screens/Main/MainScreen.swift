@@ -43,17 +43,20 @@ private extension MainScreen {
         VStack {
             Spacer()
 
-//            ButtonCC("Main", action: { viewModel.send(action: .buttonTapped) })
-//                .padding(.horizontal, 24)
+            WidgetCC {
+                ButtonCC(image: Image(systemName: "shield.lefthalf.filled"), text: "BUTTON 1") {
+                    print("Hello")
+                }
 
-            ButtonCC {
-                print("Hello")
-            } image: {
-                Image(systemName: "shield.lefthalf.filled")
-            } text: {
-                Text("BUTTON")
+                ButtonCC(image: Image(systemName: "shield.lefthalf.filled"), text: "BUTTON 2") {
+                    print("Hello")
+                }
+
+                ButtonCC(image: Image(systemName: "shield.lefthalf.filled"), text: "BUTTON 3") {
+                    print("Hello")
+                }
             }
-            .padding(24)
+            .padding(16)
 
             Spacer()
         }

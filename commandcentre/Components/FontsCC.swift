@@ -12,12 +12,29 @@ enum Fonts {
 
     private static let fontRajdhaniMedium = "Rajdhani-Medium"
 
-    static let buttonIcon = Font.custom(fontRajdhaniMedium, size: 22)
-    static let buttonTitle = Font.custom(fontRajdhaniMedium, size: 34)
-    static let debugMenuButton = Font.custom(
-        fontRajdhaniMedium,
-        size: UIFont.preferredFont(forTextStyle: .title2).pointSize,
-        relativeTo: .title2
-    )
+    private static func customFont(size: CGFloat, relativeTo textStyle: Font.TextStyle) -> Font {
+        Font.custom(fontRajdhaniMedium, size: size, relativeTo: textStyle)
+    }
+
+    static let largeTitle = customFont(size: 34, relativeTo: .largeTitle)
+    static let title = customFont(size: 28, relativeTo: .title)
+    static let title2 = customFont(size: 22, relativeTo: .title2)
+    static let title3 = customFont(size: 20, relativeTo: .title3)
+    static let headline = customFont(size: 17, relativeTo: .headline)
+    static let body = customFont(size: 17, relativeTo: .body)
+    static let callout = customFont(size: 16, relativeTo: .callout)
+    static let subheadline = customFont(size: 15, relativeTo: .subheadline)
+    static let footnote = customFont(size: 13, relativeTo: .footnote)
+    static let caption = customFont(size: 12, relativeTo: .caption)
+    static let caption2 = customFont(size: 11, relativeTo: .caption2)
+
+    @available(*, deprecated, message: "Remove, use standard font sizes above")
+    static let buttonIcon = customFont(size: 22, relativeTo: .title2)
+
+    @available(*, deprecated, message: "Remove, use standard font sizes above")
+    static let buttonTitle = customFont(size: 34, relativeTo: .largeTitle)
+
+    @available(*, deprecated, message: "Remove, use standard font sizes above")
+    static let debugMenuButton = customFont(size: 22, relativeTo: .title2)
 
 }

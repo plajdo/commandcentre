@@ -36,7 +36,7 @@ struct ButtonCC<ImageView: View, TextView: View>: View {
 
 extension ButtonCC where ImageView == Image, TextView == Text {
 
-    init(action: @escaping () -> Void, image: Image, text: String) {
+    init(image: Image, text: String, action: @escaping () -> Void) {
         self.init(
             action: action,
             image: { image },
@@ -126,11 +126,9 @@ private struct ButtonCCFrameShape: Shape {
     ZStack {
         Color.black.ignoresSafeArea()
 
-        ButtonCC(
-            action: { print("Pressed") },
-            image: Image(systemName: "chart.xyaxis.line"),
-            text: "Stats"
-        )
+        ButtonCC(image: Image(systemName: "chart.xyaxis.line"), text: "Stats") {
+            print("Pressed")
+        }
         .padding(.horizontal, 16)
     }
 }
@@ -139,11 +137,9 @@ private struct ButtonCCFrameShape: Shape {
     ZStack {
         Color.black.ignoresSafeArea()
 
-        ButtonCC(
-            action: { print("Pressed") },
-            image: Image(systemName: "desktopcomputer.and.macbook"),
-            text: "Systems"
-        )
+        ButtonCC(image: Image(systemName: "desktopcomputer.and.macbook"), text: "Systems") {
+            print("Pressed")
+        }
         .frame(width: 240)
         .padding(.horizontal, 16)
     }
