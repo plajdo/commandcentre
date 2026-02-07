@@ -25,7 +25,7 @@ enum Fonts {
     static let callout = customFont(size: 16, relativeTo: .callout)
     static let subheadline = customFont(size: 15, relativeTo: .subheadline)
     static let footnote = customFont(size: 13, relativeTo: .footnote)
-    static let caption = customFont(size: 12, relativeTo: .caption)
+    static let caption1 = customFont(size: 12, relativeTo: .caption)
     static let caption2 = customFont(size: 11, relativeTo: .caption2)
 
 }

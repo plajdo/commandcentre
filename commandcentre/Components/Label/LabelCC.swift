@@ -29,6 +29,7 @@ struct LabelCC: View {
             .foregroundStyle(color)
             .lineLimit(nil)
             .fixedSize(horizontal: false, vertical: true)
+            .frame(maxWidth: .infinity, alignment: .leading)
     }
 
 }
@@ -51,7 +52,7 @@ extension LabelCC {
             case .bodyPrimary:
                 return Fonts.body
             case .captionPrimary:
-                return Fonts.caption
+                return Fonts.caption1
             case .bodySecondary:
                 return Fonts.body
             }

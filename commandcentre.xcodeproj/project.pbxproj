@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		09A79D432F37EA54008D64B2 /* GRDB in Frameworks */ = {isa = PBXBuildFile; productRef = 09A79D422F37EA54008D64B2 /* GRDB */; };
+		09A79D452F37EA54008D64B2 /* GRDB-dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 09A79D442F37EA54008D64B2 /* GRDB-dynamic */; };
 		09C1A8522F36948C00280983 /* GoodReactor in Frameworks */ = {isa = PBXBuildFile; productRef = 09C1A8512F36948C00280983 /* GoodReactor */; };
 		09C1A8552F3694BE00280983 /* GoodCoordinator in Frameworks */ = {isa = PBXBuildFile; productRef = 09C1A8542F3694BE00280983 /* GoodCoordinator */; };
 		09C1A8582F36956A00280983 /* GoodNetworking in Frameworks */ = {isa = PBXBuildFile; productRef = 09C1A8572F36956A00280983 /* GoodNetworking */; };
@@ -50,6 +52,8 @@
 				09C1A85D2F3695CF00280983 /* PulseProxy in Frameworks */,
 				09C1A8582F36956A00280983 /* GoodNetworking in Frameworks */,
 				09C1A85B2F3695CF00280983 /* Pulse in Frameworks */,
+				09A79D452F37EA54008D64B2 /* GRDB-dynamic in Frameworks */,
+				09A79D432F37EA54008D64B2 /* GRDB in Frameworks */,
 				09C1A8522F36948C00280983 /* GoodReactor in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -83,6 +87,7 @@
 				098A928A2F36858000878E93 /* Sources */,
 				098A928B2F36858000878E93 /* Frameworks */,
 				098A928C2F36858000878E93 /* Resources */,
+				09C1ADC92F37E0BD00280983 /* Git build number */,
 			);
 			buildRules = (
 			);
@@ -99,6 +104,8 @@
 				09C1A85A2F3695CF00280983 /* Pulse */,
 				09C1A85C2F3695CF00280983 /* PulseProxy */,
 				09C1A85E2F3695CF00280983 /* PulseUI */,
+				09A79D422F37EA54008D64B2 /* GRDB */,
+				09A79D442F37EA54008D64B2 /* GRDB-dynamic */,
 			);
 			productName = commandcentre;
 			productReference = 098A928E2F36858000878E93 /* commandcentre.app */;
@@ -133,6 +140,7 @@
 				09C1A8532F3694BE00280983 /* XCRemoteSwiftPackageReference "GoodCoordinator-iOS" */,
 				09C1A8562F36956A00280983 /* XCRemoteSwiftPackageReference "GoodNetworking" */,
 				09C1A8592F3695CF00280983 /* XCRemoteSwiftPackageReference "Pulse" */,
+				09A79D412F37EA54008D64B2 /* XCRemoteSwiftPackageReference "GRDB.swift" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 098A928F2F36858000878E93 /* Products */;
@@ -153,6 +161,28 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		09C1ADC92F37E0BD00280983 /* Git build number */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Git build number";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -euo pipefail\n\nGIT_COMMIT_SHA=$(/usr/bin/git -C \"${SRCROOT}\" rev-parse --short HEAD 2>/dev/null || echo \"unknown\")\nexport GIT_COMMIT_SHA\n\nif [ -n \"${TARGET_BUILD_DIR:-}\" ] && [ -n \"${INFOPLIST_PATH:-}\" ]; then\n  INFO_PLIST_PATH=\"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\n\n  if [ -f \"${INFO_PLIST_PATH}\" ]; then\n    /usr/libexec/PlistBuddy -c \"Set :CFBundleVersion ${GIT_COMMIT_SHA}\" \"${INFO_PLIST_PATH}\" 2>/dev/null \\\n    || /usr/libexec/PlistBuddy -c \"Add :CFBundleVersion string ${GIT_COMMIT_SHA}\" \"${INFO_PLIST_PATH}\"\n  fi\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		098A928A2F36858000878E93 /* Sources */ = {
@@ -295,6 +325,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = UXJD8DJ3JM;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = commandcentre/Application/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -326,6 +357,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = UXJD8DJ3JM;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = commandcentre/Application/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -372,6 +404,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		09A79D412F37EA54008D64B2 /* XCRemoteSwiftPackageReference "GRDB.swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/groue/GRDB.swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.9.0;
+			};
+		};
 		09C1A8502F36948C00280983 /* XCRemoteSwiftPackageReference "GoodReactor" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/GoodRequest/GoodReactor.git";
@@ -407,6 +447,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		09A79D422F37EA54008D64B2 /* GRDB */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 09A79D412F37EA54008D64B2 /* XCRemoteSwiftPackageReference "GRDB.swift" */;
+			productName = GRDB;
+		};
+		09A79D442F37EA54008D64B2 /* GRDB-dynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 09A79D412F37EA54008D64B2 /* XCRemoteSwiftPackageReference "GRDB.swift" */;
+			productName = "GRDB-dynamic";
+		};
 		09C1A8512F36948C00280983 /* GoodReactor */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 09C1A8502F36948C00280983 /* XCRemoteSwiftPackageReference "GoodReactor" */;

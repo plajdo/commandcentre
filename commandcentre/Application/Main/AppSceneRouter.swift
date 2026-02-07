@@ -22,7 +22,7 @@ import SwiftUI
             switch viewModel.destination {
             case .main:
                 NavigationStack {
-                    MainScreen()
+                    MainView()
                 }
                 .transition(.opacity)
 
@@ -31,6 +31,7 @@ import SwiftUI
             }
         }
         .animation(.smooth, value: viewModel.destination)
+        .background { BackgroundCC() }
     }
 
 }

@@ -11,9 +11,11 @@ import SwiftUI
 
 struct BackgroundCC: View {
 
+    @State private var startDate = Date()
+
     var body: some View {
         TimelineView(.animation) { context in
-            let time = context.date.timeIntervalSinceReferenceDate
+            let time = context.date.timeIntervalSince(startDate)
 
             RadialGradient(
                 gradient: Gradient(colors: [
@@ -36,11 +38,17 @@ private extension BackgroundCC {
 
     func pulseShader(time: TimeInterval) -> Shader {
         let timeValue = Float(time * 0.5)
+        let pulseAmplitude = Float(0.04)
+        let ditherAmount = Float(1.0 / 255.0)
+        let ditherSpeed = Float(0.35)
 
         return Shader(
             function: ShaderFunction(library: .default, name: "backgroundPulse"),
             arguments: [
-                .float(timeValue)
+                .float(timeValue),
+                .float(pulseAmplitude),
+                .float(ditherAmount),
+                .float(ditherSpeed)
             ]
         )
     }

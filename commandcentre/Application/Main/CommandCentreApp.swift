@@ -9,6 +9,7 @@ import SwiftUI
 
 @main
 struct CommandCentreApp: App {
+
     @State private var isDebugMenuPresented = false
 
     var body: some Scene {
@@ -17,4 +18,5 @@ struct CommandCentreApp: App {
                 .modifier(DebugMenuModifier(isPresented: $isDebugMenuPresented))
         }
     }
+
 }
