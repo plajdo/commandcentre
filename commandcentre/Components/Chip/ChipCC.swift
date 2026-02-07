@@ -13,15 +13,18 @@ struct ChipCC<Content: View>: View {
 
     private let title: String?
     private let style: Style
+    private let isTopInsetEnabled: Bool
     private let content: () -> Content
 
     init(
         title: String? = nil,
         style: Style,
+        isTopInsetEnabled: Bool,
         @ViewBuilder content: @escaping () -> Content
     ) {
         self.title = title
         self.style = style
+        self.isTopInsetEnabled = isTopInsetEnabled
         self.content = content
     }
 
@@ -29,7 +32,7 @@ struct ChipCC<Content: View>: View {
         VStack(spacing: 0) {
             if let title {
                 Text(String(title.uppercased()))
-                    .font(Fonts.largeTitle)
+                    .font(Fonts.title2)
                     .foregroundStyle(style.color)
                     .padding(.horizontal, 8)
                     .padding(.vertical, 4)
@@ -42,17 +45,18 @@ struct ChipCC<Content: View>: View {
                 .padding(.horizontal, 8)
                 .padding(.vertical, 8)
         }
-        .clipShape(ChipCCFrameShape().inset(by: 0.5))
+        .clipShape(ChipCCFrameShape(isTopInsetEnabled: isTopInsetEnabled).inset(by: 0.5))
         .overlay {
-            ChipCCFrameShape()
+            ChipCCFrameShape(isTopInsetEnabled: isTopInsetEnabled)
                 .strokeBorder(style.color, lineWidth: 1)
         }
         .overlay(alignment: .leading) {
             ChipCCLeadingBar()
                 .fill(style.color)
                 .frame(width: 6)
+                .offset(x: -6)
         }
-        .contentShape(ChipCCFrameShape())
+        .contentShape(ChipCCFrameShape(isTopInsetEnabled: isTopInsetEnabled))
     }
 
 }
@@ -98,11 +102,16 @@ extension ChipCC {
 
 }
 
-// MARK: - Shapes
+// MARK: - Chip shape
 
 private struct ChipCCFrameShape: InsettableShape {
 
+    private let isTopInsetEnabled: Bool
     private var insetAmount: CGFloat = 0
+
+    init(isTopInsetEnabled: Bool) {
+        self.isTopInsetEnabled = isTopInsetEnabled
+    }
 
     func inset(by amount: CGFloat) -> some InsettableShape {
         var shape = self
@@ -112,9 +121,10 @@ private struct ChipCCFrameShape: InsettableShape {
 
     func path(in rect: CGRect) -> Path {
         let adjustedRect = rect.insetBy(dx: insetAmount, dy: insetAmount)
-        let topCut = min(adjustedRect.height * 0.18, 5)
-        let topInset = adjustedRect.height + (topCut * 0.5)
+        let topCut = isTopInsetEnabled ? min(adjustedRect.height * 0.18, 5) : 0
+        let topInset = min(adjustedRect.height + (topCut * 0.5), adjustedRect.width)
         let trailingCut = min(adjustedRect.height * 0.28, 12)
+        let topInsetX = isTopInsetEnabled ? adjustedRect.minX + topInset : adjustedRect.maxX
 
         var path = Path()
         path.move(to: CGPoint(x: adjustedRect.minX, y: adjustedRect.minY))
@@ -122,8 +132,8 @@ private struct ChipCCFrameShape: InsettableShape {
         path.addLine(to: CGPoint(x: adjustedRect.maxX - trailingCut, y: adjustedRect.maxY))
         path.addLine(to: CGPoint(x: adjustedRect.maxX, y: adjustedRect.maxY - trailingCut))
         path.addLine(to: CGPoint(x: adjustedRect.maxX, y: adjustedRect.minY + topCut))
-        path.addLine(to: CGPoint(x: adjustedRect.minX + topInset, y: adjustedRect.minY + topCut))
-        path.addLine(to: CGPoint(x: adjustedRect.minX + topInset - topCut, y: adjustedRect.minY))
+        path.addLine(to: CGPoint(x: topInsetX, y: adjustedRect.minY + topCut))
+        path.addLine(to: CGPoint(x: topInsetX - topCut, y: adjustedRect.minY))
         path.closeSubpath()
 
         return path
@@ -131,22 +141,46 @@ private struct ChipCCFrameShape: InsettableShape {
 
 }
 
+// MARK: - Leading bar
+
 private struct ChipCCLeadingBar: Shape {
 
     func path(in rect: CGRect) -> Path {
-        let dent = min(rect.height * 0.06, 1)
+        let dentTop = rect.height * 0.58
+        let dentBottom = rect.height * 0.85
+
+        let dentSize = dentSize(for: rect.height)
 
         var path = Path()
         path.move(to: CGPoint(x: rect.minX, y: rect.minY))
         path.addLine(to: CGPoint(x: rect.maxX, y: rect.minY))
         path.addLine(to: CGPoint(x: rect.maxX, y: rect.maxY))
         path.addLine(to: CGPoint(x: rect.minX, y: rect.maxY))
-        path.addLine(to: CGPoint(x: rect.minX + dent, y: rect.maxY))
-        path.addLine(to: CGPoint(x: rect.minX + dent, y: rect.maxY - dent))
-        path.addLine(to: CGPoint(x: rect.minX, y: rect.maxY - dent))
+        path.addLine(to: CGPoint(x: rect.minX, y: dentBottom))
+        path.addLine(to: CGPoint(x: rect.minX + dentSize, y: dentBottom - dentSize))
+        path.addLine(to: CGPoint(x: rect.minX + dentSize, y: dentTop + dentSize))
+        path.addLine(to: CGPoint(x: rect.minX, y: dentTop))
         path.closeSubpath()
 
         return path
+    }
+
+    private func dentSize(for height: CGFloat) -> CGFloat {
+        let minHeight: CGFloat = 50
+        let maxHeight: CGFloat = 150
+        let minDent: CGFloat = 2
+        let maxDent: CGFloat = 1
+
+        if height <= minHeight {
+            return minDent
+        }
+
+        if height >= maxHeight {
+            return maxDent
+        }
+
+        let progress = (height - minHeight) / (maxHeight - minHeight)
+        return minDent + (maxDent - minDent) * progress
     }
 
 }
@@ -157,10 +191,12 @@ private struct ChipCCLeadingBar: Shape {
     ZStack {
         Color.black.ignoresSafeArea()
 
-        ChipCC(title: "Training", style: .secondary) {
+        ChipCC(title: "Training", style: .secondary, isTopInsetEnabled: true) {
             Text("To continue training, select a training module.")
                 .font(Fonts.body)
                 .foregroundStyle(Color.Cc.gold)
+
+//            Rectangle().frame(width: 30, height: 10)
         }
         .padding(16)
     }
@@ -170,7 +206,7 @@ private struct ChipCCLeadingBar: Shape {
     ZStack {
         Color.black.ignoresSafeArea()
 
-        ChipCC(style: .info) {
+        ChipCC(style: .info, isTopInsetEnabled: false) {
             VStack(alignment: .leading, spacing: 8) {
                 Text("Status")
                     .font(Fonts.headline)

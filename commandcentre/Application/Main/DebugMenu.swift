@@ -39,12 +39,7 @@ struct DebugMenuModifier: ViewModifier {
 
 private struct DebugMenuView: View {
     var body: some View {
-        List {
-            NavigationLink("Pulse Console") {
-                ConsoleView(store: .shared)
-            }
-        }
-        .navigationTitle("Debug")
+        ConsoleView(store: .shared)
     }
 }
 #else
