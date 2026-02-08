@@ -1,17 +1,16 @@
 //
-//  QuicknoteViewModel.swift
+//  QuicknoteListViewModel.swift
 //  commandcentre
 //
-//  Created by Filip Šašala on 07/02/2026.
+//  Created by Filip Šašala on 08/02/2026.
 //
 
 import Factory
-import Foundation
 import GoodCoordinator
 import GoodReactor
 import Observation
 
-@Observable final class QuicknoteViewModel: Reactor {
+@Observable final class QuicknoteListViewModel: Reactor {
 
     typealias Event = GoodReactor.Event<Action, Mutation, Destination>
 
@@ -23,8 +22,7 @@ import Observation
 
     enum Action {
 
-        case setNoteText(String)
-        case saveNoteOnDisappear
+        case load
 
     }
 
@@ -32,13 +30,15 @@ import Observation
 
     enum Mutation {
 
+        case setQuicknotes([Quicknote])
+
     }
 
     // MARK: - State
 
     @MainActor @Observable final class State {
 
-        var noteText = ""
+        var quicknotes: [Quicknote] = []
 
     }
 
@@ -60,25 +60,19 @@ import Observation
 
     func reduce(state: inout State, event: Event) {
         switch event.kind {
-        case .action(.setNoteText(let noteText)):
-            state.noteText = noteText
-
-        case .action(.saveNoteOnDisappear):
-            let trimmedNoteText = state.noteText.trimmingCharacters(in: .whitespacesAndNewlines)
-
-            // Skip saving empty notes
-            guard !trimmedNoteText.isEmpty else {
-                break
-            }
-
+        case .action(.load):
             run(event) {
                 do {
-                    try await databaseService.saveQuicknote(noteText: trimmedNoteText, createdAt: .now)
+                    let quicknotes = try await databaseService.fetchLatestQuicknotes(limit: 5)
+                    return Mutation.setQuicknotes(quicknotes)
                 } catch {
-                    log(.error, "Quicknote save failed.", metadata(error))
+                    log(.error, "Quicknote fetch failed.", metadata(error))
+                    return nil
                 }
-                return nil
             }
+
+        case .mutation(.setQuicknotes(let quicknotes)):
+            state.quicknotes = quicknotes
 
         default:
             break

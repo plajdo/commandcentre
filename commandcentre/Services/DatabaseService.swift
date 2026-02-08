@@ -72,4 +72,13 @@ extension DatabaseService {
         log(.info, "Quicknote saved.")
     }
 
+    func fetchLatestQuicknotes(limit: Int) throws -> [Quicknote] {
+        return try databaseQueue.read { database in
+            try Quicknote
+                .order(Quicknote.Columns.createdAt.desc)
+                .limit(limit)
+                .fetchAll(database)
+        }
+    }
+
 }

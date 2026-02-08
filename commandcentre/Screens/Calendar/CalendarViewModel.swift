@@ -1,15 +1,15 @@
 //
-//  MainScreenViewModel.swift
+//  CalendarViewModel.swift
 //  commandcentre
 //
-//  Created by Filip Šašala on 06/02/2026.
+//  Created by Filip Šašala on 07/02/2026.
 //
 
 import GoodCoordinator
 import GoodReactor
 import Observation
 
-@Observable final class MainScreenViewModel: Reactor {
+@Observable final class CalendarViewModel: Reactor {
 
     typealias Event = GoodReactor.Event<Action, Mutation, Destination>
 
@@ -17,7 +17,7 @@ import Observation
 
     enum Action {
 
-        case buttonTapped
+        case load
 
     }
 
@@ -33,9 +33,7 @@ import Observation
 
     @Navigable enum Destination {
 
-        case calendar
-        case quicknote
-        case quicknoteList
+        case none
 
     }
 
@@ -49,7 +47,7 @@ import Observation
 
     func reduce(state: inout State, event: Event) {
         switch event.kind {
-        case .action(.buttonTapped):
+        case .action(.load):
             break
 
         default:

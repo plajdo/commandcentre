@@ -35,7 +35,10 @@ struct MainScreen: View {
             .navigationDestination(isPresented: $viewModel.destination.quicknote) {
                 QuicknoteView()
             }
-            .toolbar(.hidden, for: .navigationBar)
+            .navigationDestination(isPresented: $viewModel.destination.quicknoteList) {
+                QuicknoteListView()
+            }
+            .toolbarVisibility(.hidden, for: .navigationBar)
             .onFirstAppear {
                 viewModel.start()
             }
@@ -73,6 +76,10 @@ private extension MainScreen {
 
                 ButtonCC(image: Image(systemName: "square.and.pencil"), text: "Quicknote") {
                     viewModel.send(destination: .quicknote)
+                }
+
+                ButtonCC(image: Image(systemName: "list.bullet.rectangle"), text: "Quicknotes") {
+                    viewModel.send(destination: .quicknoteList)
                 }
             }
             .padding(16)

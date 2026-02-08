@@ -22,9 +22,10 @@ struct DebugMenuModifier: ViewModifier {
                     isPresented = true
                 } label: {
                     Image(systemName: "ladybug")
-                        .padding(8)
+                        .padding(16)
                 }
                 .accessibilityLabel("Open Debug Menu")
+                .ignoresSafeArea(.all)
             }
             .sheet(isPresented: $isPresented) {
                 NavigationStack {

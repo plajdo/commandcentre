@@ -53,7 +53,6 @@ private extension ButtonCC {
             image
                 .frame(width: 56, height: 56)
                 .aspectRatio(contentMode: .fit)
-                .padding(.leading, 8)
 
             text
                 .lineLimit(1)
@@ -78,44 +77,18 @@ private struct ButtonCCStyle: ButtonStyle {
         let frameColor = configuration.isPressed ? Color.Cc.crimson : Color.Cc.crimsonDark
 
         return configuration.label
-            .background {
-                HStack(spacing: 1) {
-                    Rectangle()
-                        .fill(frameColor)
-                        .scaleEffect(1.03) // workaround
-                        .frame(width: 8)
-
-                    ButtonCCFrameShape()
-                        .stroke(frameColor, lineWidth: 2)
-                }
+            .overlay {
+                ChipCCFrameShape(isTopInsetEnabled: true)
+                    .strokeBorder(frameColor, lineWidth: 2)
             }
-            .contentShape(ButtonCCFrameShape())
+            .overlay(alignment: .leading) {
+                ChipCCLeadingBarShape()
+                    .fill(frameColor)
+                    .frame(width: 6)
+                    .offset(x: -6)
+            }
+            .contentShape(ChipCCFrameShape(isTopInsetEnabled: true))
             .animation(.easeOut(duration: 0.06), value: configuration.isPressed)
-    }
-
-}
-
-// MARK: - Shape
-
-private struct ButtonCCFrameShape: Shape {
-
-    func path(in rect: CGRect) -> Path {
-        let topCut = min(rect.height * 0.22, 6)
-        let topInset = rect.height + topCut
-
-        let trailingCut = min(rect.height * 0.35, 16)
-
-        var path = Path()
-        path.move(to: CGPoint(x: 0, y: 0))
-        path.addLine(to: CGPoint(x: 0, y: rect.maxY))
-        path.addLine(to: CGPoint(x: rect.maxX - trailingCut, y: rect.maxY))
-        path.addLine(to: CGPoint(x: rect.maxX, y: rect.maxY - trailingCut))
-        path.addLine(to: CGPoint(x: rect.maxX, y: topCut))
-        path.addLine(to: CGPoint(x: topInset, y: topCut))
-        path.addLine(to: CGPoint(x: topInset - topCut, y: 0))
-        path.closeSubpath()
-
-        return path
     }
 
 }

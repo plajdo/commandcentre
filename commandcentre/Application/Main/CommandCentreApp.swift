@@ -15,6 +15,8 @@ struct CommandCentreApp: App {
     var body: some Scene {
         WindowGroup {
             AppSceneRouter()
+                .statusBarHidden(true)
+                .modifier(BatteryView())
                 .modifier(DebugMenuModifier(isPresented: $isDebugMenuPresented))
         }
     }

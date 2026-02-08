@@ -51,7 +51,7 @@ struct ChipCC<Content: View>: View {
                 .strokeBorder(style.color, lineWidth: 1)
         }
         .overlay(alignment: .leading) {
-            ChipCCLeadingBar()
+            ChipCCLeadingBarShape()
                 .fill(style.color)
                 .frame(width: 6)
                 .offset(x: -6)
@@ -104,7 +104,7 @@ extension ChipCC {
 
 // MARK: - Chip shape
 
-private struct ChipCCFrameShape: InsettableShape {
+struct ChipCCFrameShape: InsettableShape {
 
     private let isTopInsetEnabled: Bool
     private var insetAmount: CGFloat = 0
@@ -143,7 +143,7 @@ private struct ChipCCFrameShape: InsettableShape {
 
 // MARK: - Leading bar
 
-private struct ChipCCLeadingBar: Shape {
+struct ChipCCLeadingBarShape: Shape {
 
     func path(in rect: CGRect) -> Path {
         let dentTop = rect.height * 0.58
@@ -187,7 +187,7 @@ private struct ChipCCLeadingBar: Shape {
 
 // MARK: - Previews
 
-#Preview("Primary") {
+#Preview("Header") {
     ZStack {
         Color.black.ignoresSafeArea()
 
@@ -195,14 +195,12 @@ private struct ChipCCLeadingBar: Shape {
             Text("To continue training, select a training module.")
                 .font(Fonts.body)
                 .foregroundStyle(Color.Cc.gold)
-
-//            Rectangle().frame(width: 30, height: 10)
         }
         .padding(16)
     }
 }
 
-#Preview("Info") {
+#Preview("No header") {
     ZStack {
         Color.black.ignoresSafeArea()
 
